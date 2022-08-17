@@ -1,0 +1,51 @@
+{
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "@test",
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "gatsby-demo": {
+      "tags": []
+    },
+    "gatsby-demo-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gatsby-demo"]
+    },
+    "test-package-main": {
+      "tags": []
+    },
+    "test-package-one": {
+      "tags": []
+    },
+    "test-package-two": {
+      "tags": []
+    }
+  }
+}
