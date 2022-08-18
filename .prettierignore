@@ -2,3 +2,7 @@
 
 /dist
 /coverage
+
+/apps/gatsby-demo/node_modules
+/apps/gatsby-demo/public
+/apps/gatsby-demo/.cache

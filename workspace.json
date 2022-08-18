@@ -1,6 +1,78 @@
 {
   "version": 2,
   "projects": {
+    "gatsby-demo": {
+      "root": "apps/gatsby-demo",
+      "sourceRoot": "apps/gatsby-demo/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/gatsby:build",
+          "options": {
+            "outputPath": "apps/gatsby-demo/public",
+            "uglify": true,
+            "color": true,
+            "profile": false
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/gatsby:server",
+          "options": {
+            "buildTarget": "gatsby-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "gatsby-demo:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/gatsby-demo/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/gatsby-demo"],
+          "options": {
+            "jestConfig": "apps/gatsby-demo/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "gatsby-demo-e2e": {
+      "root": "apps/gatsby-demo-e2e",
+      "sourceRoot": "apps/gatsby-demo-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/gatsby-demo-e2e/cypress.json",
+            "devServerTarget": "gatsby-demo:serve",
+            "tsConfig": "apps/gatsby-demo-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "gatsby-demo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/gatsby-demo-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "test-package-main": {
       "root": "libs/test-package-main",
       "sourceRoot": "libs/test-package-main/src",
@@ -9,34 +81,26 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/test-package-main/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/test-package-main/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/test-package-main"
-          ],
+          "outputs": ["coverage/libs/test-package-main"],
           "options": {
             "jestConfig": "libs/test-package-main/jest.config.js",
             "passWithNoTests": true
           }
         },
         "build": {
-          "executor": "@nrwl/js:tsc",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/libs/test-package-main",
             "tsConfig": "libs/test-package-main/tsconfig.lib.json",
             "packageJson": "libs/test-package-main/package.json",
             "main": "libs/test-package-main/src/index.ts",
-            "assets": [
-              "libs/test-package-main/*.md"
-            ]
+            "assets": ["libs/test-package-main/*.md"]
           }
         }
       }
@@ -49,34 +113,26 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/test-package-one/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/test-package-one/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/test-package-one"
-          ],
+          "outputs": ["coverage/libs/test-package-one"],
           "options": {
             "jestConfig": "libs/test-package-one/jest.config.js",
             "passWithNoTests": true
           }
         },
         "build": {
-          "executor": "@nrwl/js:tsc",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/libs/test-package-one",
             "tsConfig": "libs/test-package-one/tsconfig.lib.json",
             "packageJson": "libs/test-package-one/package.json",
             "main": "libs/test-package-one/src/index.ts",
-            "assets": [
-              "libs/test-package-one/*.md"
-            ]
+            "assets": ["libs/test-package-one/*.md"]
           }
         }
       }
@@ -89,34 +145,26 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/test-package-two/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/test-package-two/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/test-package-two"
-          ],
+          "outputs": ["coverage/libs/test-package-two"],
           "options": {
             "jestConfig": "libs/test-package-two/jest.config.js",
             "passWithNoTests": true
           }
         },
         "build": {
-          "executor": "@nrwl/js:tsc",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/libs/test-package-two",
             "tsConfig": "libs/test-package-two/tsconfig.lib.json",
             "packageJson": "libs/test-package-two/package.json",
             "main": "libs/test-package-two/src/index.ts",
-            "assets": [
-              "libs/test-package-two/*.md"
-            ]
+            "assets": ["libs/test-package-two/*.md"]
           }
         }
       }
@@ -130,6 +178,12 @@
       "application": {
         "babel": true
       }
+    },
+    "@nrwl/gatsby": {
+      "application": {
+        "style": "styled-components"
+      }
     }
-  }
+  },
+  "defaultProject": "gatsby-demo"
 }
