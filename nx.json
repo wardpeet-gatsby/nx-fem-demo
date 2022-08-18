@@ -31,13 +31,6 @@
     }
   },
   "projects": {
-    "gatsby-demo": {
-      "tags": []
-    },
-    "gatsby-demo-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gatsby-demo"]
-    },
     "test-package-main": {
       "tags": []
     },

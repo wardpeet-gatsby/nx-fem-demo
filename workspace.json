@@ -1,114 +1,6 @@
 {
   "version": 2,
   "projects": {
-    "gatsby-demo": {
-      "root": "apps/gatsby-demo",
-      "sourceRoot": "apps/gatsby-demo/src",
-      "projectType": "application",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/web:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/apps/gatsby-demo",
-            "index": "apps/gatsby-demo/src/index.html",
-            "main": "apps/gatsby-demo/src/main.tsx",
-            "polyfills": "apps/gatsby-demo/src/polyfills.ts",
-            "tsConfig": "apps/gatsby-demo/tsconfig.app.json",
-            "assets": [
-              "apps/gatsby-demo/src/favicon.ico",
-              "apps/gatsby-demo/src/assets"
-            ],
-            "styles": [],
-            "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/gatsby-demo/src/environments/environment.ts",
-                  "with": "apps/gatsby-demo/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "gatsby-demo:build"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "gatsby-demo:build:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/gatsby-demo/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/gatsby-demo"
-          ],
-          "options": {
-            "jestConfig": "apps/gatsby-demo/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "gatsby-demo-e2e": {
-      "root": "apps/gatsby-demo-e2e",
-      "sourceRoot": "apps/gatsby-demo-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/gatsby-demo-e2e/cypress.json",
-            "tsConfig": "apps/gatsby-demo-e2e/tsconfig.e2e.json",
-            "devServerTarget": "gatsby-demo:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "gatsby-demo:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/gatsby-demo-e2e/**/*.{js,ts}"
-            ]
-          }
-        }
-      }
-    },
     "test-package-main": {
       "root": "libs/test-package-main",
       "sourceRoot": "libs/test-package-main/src",
@@ -133,7 +25,7 @@
           }
         },
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "outputs": [
             "{options.outputPath}"
           ],
@@ -173,7 +65,7 @@
           }
         },
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "outputs": [
             "{options.outputPath}"
           ],
@@ -213,7 +105,7 @@
           }
         },
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "outputs": [
             "{options.outputPath}"
           ],
