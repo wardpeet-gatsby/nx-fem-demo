@@ -59,7 +59,7 @@
     "@nrwl/cli": "12.9.0",
     "@nrwl/cypress": "12.9.0",
     "@nrwl/eslint-plugin-nx": "12.9.0",
-    "@nrwl/gatsby": "12.9.0",
+    "@nrwl/gatsby": "^14.6.1",
     "@nrwl/jest": "12.9.0",
     "@nrwl/node": "12.9.0",
     "@nrwl/react": "12.9.0",
